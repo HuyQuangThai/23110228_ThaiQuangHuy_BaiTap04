@@ -34,9 +34,12 @@ public class CategoryDaoImpl implements ICategoryDao {
 	}
 
 	@Override
-	public Category findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Category> findByUserId(int id) {
+		EntityManager enma = JPAConfig.getEntityManager();
+		String jpql = "SELECT c FROM Category c WHERE c.user.id = :userid";
+		TypedQuery<Category> query = enma.createQuery(jpql,Category.class);
+		query.setParameter("userid", id);
+		return query.getResultList();
 	}
 
 	@Override

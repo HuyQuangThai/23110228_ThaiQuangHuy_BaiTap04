@@ -7,12 +7,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "categories")
+@Table(name = "Categories")
 @NamedQuery(name="Category.findAll",query="SELECT c FROM Category c")
 public class Category implements Serializable {
 	/**
@@ -26,6 +28,22 @@ public class Category implements Serializable {
 	private String categoryname;
 	@Column(columnDefinition = "NVARCHAR(MAX)")
 	private String images;
+	
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+	@ManyToOne
+	@JoinColumn(name = "userid",nullable = false,referencedColumnName = "userid")
+	private User user = new User();
 	/**
 	 * @return the id
 	 */

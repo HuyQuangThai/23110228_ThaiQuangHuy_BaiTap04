@@ -18,4 +18,8 @@ public class CategoryServiceImpl implements ICategoryService {
 		// TODO Auto-generated method stub
 		return cateDao.findAll();
 	}
+	@Override
+	public List<Category> findByUserId(int id) {
+		return cateDao.findByUserId(id);
+	}
 }

@@ -44,8 +44,17 @@ public class CategoryController extends HttpServlet {
 		int id = user.getId();
 		List<Category> listCategory = cateService.findByUserId(id);
 		request.setAttribute("listcate", listCategory);
-		if (url.contains("user")) request.getRequestDispatcher("/views/user/categories.jsp").forward(request, response);
-		else if (url.contains("admin")) request.getRequestDispatcher("/views/admin/categories.jsp").forward(request, response);
+		if (url.contains("user")) {
+			request.setAttribute("home", request.getContextPath() + "/user/home");
+			request.setAttribute("category", request.getContextPath() + "/user/categories");
+			request.getRequestDispatcher("/views/user/categories.jsp").forward(request, response);
+		}
+		else if (url.contains("admin")) {
+			request.setAttribute("home", request.getContextPath() + "/admin/home");
+			request.setAttribute("category", request.getContextPath() + "/admin/categories");
+			request.getRequestDispatcher("/views/admin/categories.jsp").forward(request, response);
+		
+		}
 	}
 
 	/**

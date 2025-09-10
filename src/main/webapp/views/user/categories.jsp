@@ -88,10 +88,10 @@ body {
 </head>
 <body>
 	<div class="sidebar">
-		<a href="${pageContext.request.contextPath}/user/home"> 
+		<a href="${home}"> 
 			<i class="bi bi-house-door me-2"></i>
 			Home
-		</a> <a href="${pageContext.request.contextPath}/user/categories" class="active"> 
+		</a> <a href="${category}" class="active"> 
 			<i class="bi bi-folder me-2"></i> 
 			Category </a>
 	</div>

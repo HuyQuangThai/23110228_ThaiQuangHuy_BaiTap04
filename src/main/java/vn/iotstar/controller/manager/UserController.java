@@ -47,11 +47,23 @@ public class UserController extends HttpServlet {
 			User user = userService.findById(id);
 			List<Category> listCategory = cateService.findByUserId(id);
 			request.setAttribute("listcate", listCategory);
-			if (user.getRoleid() == 1) request.getRequestDispatcher("/views/user/categories.jsp").forward(request, response);
-			else if (user.getRoleid() == 2) request.getRequestDispatcher("/views/manager/users.jsp").forward(request, response);
-			request.getRequestDispatcher("/views/admin/categories.jsp").forward(request, response);
+			request.setAttribute("home", request.getContextPath() + "/manager/home");
+			request.setAttribute("category", request.getContextPath() + "/manager/users");
+			if (user.getRoleid() == 1) {
+				request.setAttribute("Item-2", "<i class=\"bi bi-people me-2\"></i> User");
+				request.getRequestDispatcher("/views/user/categories.jsp").forward(request, response);
+			}
+			else if (user.getRoleid() == 2) {
+				request.setAttribute("Item-2", "<i class=\"bi bi-people me-2\"></i> User");
+				request.getRequestDispatcher("/views/manager/users.jsp").forward(request, response);
+			}
+			else {
+				request.setAttribute("Item-2", "<i class=\"bi bi-people me-2\"></i> User");
+				request.getRequestDispatcher("/views/admin/categories.jsp").forward(request, response);
+			}
 		}
 		else if (url.contains("users")) {
+			request.setAttribute("Item-2", "User");
 			request.getRequestDispatcher("/views/manager/users.jsp").forward(request, response);
 		}
 	}

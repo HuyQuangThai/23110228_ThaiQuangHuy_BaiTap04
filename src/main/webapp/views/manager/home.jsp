@@ -50,12 +50,12 @@
 
 	<!-- Sidebar -->
 	<div class="sidebar">
-		<a href="#" class="active"> 
+		<a href="${pageContext.request.contextPath}/manager/home" class="active"> 
 			<i class="bi bi-house-door me-2"></i>
 			Home
 		</a> <a href="${pageContext.request.contextPath}/manager/users"> 
 			<i class="bi bi-people me-2"></i> 
-			User </a>
+			User</a>
 	</div>
 
 	<!-- Nội dung chính -->

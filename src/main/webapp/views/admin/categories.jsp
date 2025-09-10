@@ -88,12 +88,12 @@ body {
 </head>
 <body>
 	<div class="sidebar">
-		<a href="${pageContext.request.contextPath}/admin/home"> 
+		<a href="${home}"> 
 			<i class="bi bi-house-door me-2"></i>
 			Home
-		</a> <a href="${pageContext.request.contextPath}/admin/categories" class="active"> 
+		</a> <a href="${category}" class="active"> 
 			<i class="bi bi-folder me-2"></i> 
-			Category </a>
+		 		Category</a>
 	</div>
 	<div class="container mt-5 main-content">
 		<div class="d-flex justify-content-between">

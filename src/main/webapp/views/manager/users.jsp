@@ -88,7 +88,7 @@ body {
 			Home
 		</a> <a href="${pageContext.request.contextPath}/manager/users" class="active"> 
 			<i class="bi bi-people me-2"></i> 
-			Category </a>
+			Users</a>
 	</div>
 	<div class="container mt-5 main-content">
 		<div class="d-flex justify-content-between">

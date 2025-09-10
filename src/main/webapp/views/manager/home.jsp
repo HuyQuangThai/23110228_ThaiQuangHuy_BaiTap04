@@ -50,17 +50,17 @@
 
 	<!-- Sidebar -->
 	<div class="sidebar">
-		<a href="${pageContext.request.contextPath}/admin/home" class="active"> 
+		<a href="#" class="active"> 
 			<i class="bi bi-house-door me-2"></i>
 			Home
-		</a> <a href="${pageContext.request.contextPath}/admin/categories"> 
-			<i class="bi bi-folder me-2"></i> 
-			Category </a>
+		</a> <a href="${pageContext.request.contextPath}/manager/users"> 
+			<i class="bi bi-people me-2"></i> 
+			User </a>
 	</div>
 
 	<!-- Nội dung chính -->
   <div class="content">
-    <h1>Welcome, Admin ${username}</h1>
+    <h1>Welcome, Manager ${username}</h1>
   </div>
 
   <!-- Bootstrap JS -->

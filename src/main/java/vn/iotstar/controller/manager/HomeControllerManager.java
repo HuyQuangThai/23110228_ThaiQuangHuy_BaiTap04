@@ -1,4 +1,4 @@
-package vn.iotstar.controller;
+package vn.iotstar.controller.manager;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -6,27 +6,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import vn.iotstar.entities.User;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-
-import vn.iotstar.entities.Category;
-import vn.iotstar.entities.User;
-import vn.iotstar.services.impl.CategoryServiceImpl;
-import vn.iotstar.services.ICategoryService;
 
 /**
- * Servlet implementation class CategoryController
+ * Servlet implementation class HomeControllerManager
  */
-@WebServlet(urlPatterns = {"/user/categories","/admin/categories"})
-public class CategoryController extends HttpServlet {
+@WebServlet("/manager/home")
+public class HomeControllerManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CategoryController() {
+    public HomeControllerManager() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,17 +29,11 @@ public class CategoryController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = request.getRequestURI();
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		ICategoryService cateService = new CategoryServiceImpl();
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("account");
-		int id = user.getId();
-		List<Category> listCategory = cateService.findByUserId(id);
-		request.setAttribute("listcate", listCategory);
-		if (url.contains("user")) request.getRequestDispatcher("/views/user/categories.jsp").forward(request, response);
-		else if (url.contains("admin")) request.getRequestDispatcher("/views/admin/categories.jsp").forward(request, response);
+		String username = user.getUsername();
+		request.setAttribute("username", username);
+		request.getRequestDispatcher("/views/manager/home.jsp").forward(request, response);
 	}
 
 	/**

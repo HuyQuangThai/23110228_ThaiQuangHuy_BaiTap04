@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Category</title>
+<title>User View</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -75,31 +75,24 @@ body {
 		width: 150px;
 	}
 	
-	.btn-warning {
-		width: 60px;
+	.btn-success {
+		width: 150px;
 		margin-left: 7.5px;
 	}
-	
-	.btn-danger {
-		width: 60px;
-	}
-
 </style>
 </head>
 <body>
 	<div class="sidebar">
-		<a href="${pageContext.request.contextPath}/admin/home"> 
+		<a href="${pageContext.request.contextPath}/manager/home"> 
 			<i class="bi bi-house-door me-2"></i>
 			Home
-		</a> <a href="${pageContext.request.contextPath}/admin/categories" class="active"> 
-			<i class="bi bi-folder me-2"></i> 
+		</a> <a href="${pageContext.request.contextPath}/manager/users" class="active"> 
+			<i class="bi bi-people me-2"></i> 
 			Category </a>
 	</div>
 	<div class="container mt-5 main-content">
 		<div class="d-flex justify-content-between">
-		<h2 class="mb-4">Danh Sách Danh Mục</h2>
-		<a href="${pageContext.request.contextPath}/admin/category/add"
-			class="btn btn-primary mb-3 d-flex justify-content-center align-items-center">Thêm Danh Mục Mới</a>
+		<h2 class="mb-4">Danh Sách User</h2>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered">
@@ -107,33 +100,24 @@ body {
 					<tr>
 						<th scope="col">STT</th>
 						<th scope="col">Hình ảnh</th>
-						<th scope="col">Mã danh mục</th>
-						<th scope="col">Tên danh mục</th>
+						<th scope="col">Username</th>
+						<th scope="col">Password</th>
 				<!-- 		<th scope="col">Trạng thái</th> -->
 						<th scope="col">Hành động</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${listcate}" var="cate" varStatus="STT">
+					<c:forEach items="${listuser}" var="user" varStatus="STT">
 						<tr>
 							<th scope="row">${STT.index+1}</th>
-							<td><c:url
-									value="${cate.images.substring(0,5) =='https' ? cate.images : '/image?fname=' += cate.images}"
-									var="imgUrl" /> <img src="${imgUrl}"
-								class="table-img" alt="Category Image" /></td>
-							<td>${cate.id}</td>
-							<td>${cate.categoryname}</td>
-			<%-- 				<td><c:if test="${cate.status==1}">
-									<span class="badge bg-success">Hoạt động</span>
-								</c:if> <c:if test="${cate.status!=1}">
-									<span class="badge bg-danger">Khóa hoạt động</span>
-								</c:if></td> --%>
+							<td>
+							<c:url value="${empty user.images ? 'https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=' : (user.images.substring(0,5) == 'https' ? user.images : '/image?fname=' + user.images)}"
+									var="imgUrl" /> <img src="${imgUrl}" class="table-img" alt="User Image" /></td>
+							<td>${user.username}</td>
+							<td>${user.password}</td>
 							<td class = "action" ><a
-								href="<c:url value='/admin/category/edit?id=${cate.id }'/>"
-								class="btn btn-sm btn-warning">Sửa</a> <a
-								href="<c:url value='/admin/category/delete?id=${cate.id}'/>"
-								class="btn btn-sm btn-danger"
-								onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này không?');">Xóa</a>
+								href="<c:url value='/manager/users/categories?id=${user.id}'/>"
+								class="btn btn-sm btn-success">Xem category</a>
 							</td>
 						</tr>
 					</c:forEach>
